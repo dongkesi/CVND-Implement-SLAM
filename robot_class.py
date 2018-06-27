@@ -1,6 +1,5 @@
 from math import *
 import random
-import numpy as np
 
 
 ### ------------------------------------- ###
@@ -95,8 +94,7 @@ class robot:
         for i, landmark in enumerate(self.landmarks):
             dx = landmark[0] - self.x + self.rand() * self.measurement_noise
             dy = landmark[1] - self.y + self.rand() * self.measurement_noise
-            distance = np.sqrt(dx * dx + dy * dy)
-            if (distance <= self.measurement_range):
+            if abs(dy) <= self.measurement_range and abs(dx) <= self.measurement_range:
                 measurements.append([i, dx, dy])
         return measurements
 
